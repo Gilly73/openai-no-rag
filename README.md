@@ -44,7 +44,7 @@ project-root/
 1. **Clone the template**
 
    ```bash
-   git clone git@github.com:<username>/laravel-12-redis-mysql-nginx-docker-template.git my-project
+   git clone git@github.com:<username>/openai-no-rag
    cd my-project
    ```
 
@@ -61,15 +61,20 @@ project-root/
    DB_CONNECTION=mysql
    DB_HOST=mysql
    DB_PORT=3306
-   DB_DATABASE=your_db_name
-   DB_USERNAME=your_db_user
-   DB_PASSWORD=your_db_password
+   DB_DATABASE=openai
+   DB_USERNAME=openai
+   DB_PASSWORD=openai
 
    CACHE_DRIVER=redis
    QUEUE_CONNECTION=redis
    REDIS_HOST=redis
    REDIS_PASSWORD=null
    REDIS_PORT=6379
+
+   # add openai key and details
+   OPENAI_API_KEY=
+   OPENAI_MODEL=gpt-4o-mini
+   OPENAI_TIMEOUT=20
    ```
 
 3. **Build and start all services**
@@ -98,42 +103,11 @@ project-root/
    - Visit: `https://localhost` (accept the self-signed certificate warning)
    - API endpoints under: `https://localhost/api/...`
 
----
+7. **Run Open AI command**
 
-### 🛠️ Common Docker Commands
-
-| Command                                       | Description                                         |
-| --------------------------------------------- | --------------------------------------------------- |
-| `docker-compose build`                        | Build all images (or only changed Dockerfiles)      |
-| `docker-compose up -d`                        | Start all services in detached mode                 |
-| `docker-compose up -d --build`                | Rebuild then start                                  |
-| `docker-compose ps`                           | List running services & ports                       |
-| `docker-compose ps -a`                        | List all containers (running & exited)              |
-| `docker-compose logs -f <service>`            | Stream logs for `app`, `nginx`, `mysql`, or `redis` |
-| `docker-compose exec app bash`                | Open a shell in the PHP-FPM container               |
-| `docker-compose exec nginx nginx -t`          | Test nginx configuration inside the container       |
-| `docker-compose exec app php artisan migrate` | Run Laravel database migrations                     |
-| `docker-compose exec app php artisan test`    | Execute Laravel’s test suite                        |
-
----
-
-### 📝 Usage
-
-1. **Define API endpoints**
-
-   - Add routes in `src/routes/api.php`.
-   - Create controllers under `src/app/Http/Controllers/`.
-
-2. **TDD workflow**
-
-   ```bash
-   docker-compose exec app php artisan test
-   ```
-
-3. **API verification**
-
-   - Import your Postman collection and point to `https://localhost/api/...`
-
+   - php artisan llm:test "Say hello to John politely. Keep it under 20 words."
+   - make sure you have credits
+   - change the Open ai request to anything you want Open AI to answer
 
 ---
 
