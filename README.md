@@ -109,6 +109,10 @@ project-root/
    - make sure you have credits
    - change the Open ai request to anything you want Open AI to answer
 
+8. **Run Open AI from controller**
+   - https://localhost/reply-drafter
+   - change Tone for different responses
+
 ---
 
 ### 📜 License
